@@ -5,8 +5,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // White/black base, softened with an off-white page tone, plus
-        // accents and muted tints pulled from the Classical 615 palette.
+        // Exact palette hex codes — no muting. Used directly as section
+        // backgrounds (header, hero, footer), with the card grid kept
+        // white/cream so dense event text stays easy to read.
         ink: "#111111",
         paper: "#FFFFFF",
         cream: "#FAF7F1",
@@ -15,23 +16,14 @@ const config: Config = {
         muted: "#6B6B6B",
 
         red: "#D93A2B",
-        "red-dark": "#9C2A1F",
-        "red-tint": "#FBEAE7",
-
         purple: "#DF9BF2",
-        "purple-dark": "#5B2A6B",
-        "purple-tint": "#F6EBFA",
-
+        "purple-dark": "#3A1A45",
+        "purple-pale": "#F3E4FA",
         green: "#2C4031",
-        "green-tint": "#EAEEEB",
-
         yellow: "#D9CF43",
         "yellow-dark": "#5A5416",
-        "yellow-tint": "#FBF9E7",
-
         orange: "#D97A43",
         "orange-dark": "#663717",
-        "orange-tint": "#FBEFE6",
       },
       fontFamily: {
         display: ["var(--font-bungee)", "sans-serif"],
