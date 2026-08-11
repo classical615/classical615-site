@@ -36,7 +36,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${bungee.variable} ${poppins.variable} ${plexMono.variable}`}>
-      <body className="bg-ink text-cream font-body antialiased">{children}</body>
+      <body className="bg-paper text-ink font-body antialiased">{children}</body>
     </html>
   );
 }

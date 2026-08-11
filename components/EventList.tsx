@@ -5,10 +5,10 @@ export function EventList({ events }: { events: PublicEvent[] }) {
   if (events.length === 0) {
     return (
       <div className="py-20 text-center">
-        <p className="font-display text-2xl text-cream-dim">
+        <p className="font-display text-2xl text-muted">
           No concerts match — yet.
         </p>
-        <p className="mt-2 text-sm text-cream-dim/70">
+        <p className="mt-2 text-sm text-muted/70">
           Try clearing a filter, or check back — new events are added every week.
         </p>
       </div>

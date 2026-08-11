@@ -45,9 +45,11 @@ function firstOrSelf(value: string[] | string | undefined): string {
 
 function mapRecord(record: AirtableRecord): PublicEvent {
   const f = record.fields;
-  // "Presenter (if not listed)" covers ad-hoc presenters that aren't in the
-  // linked Contacts base yet — fall back to it when Presenter is empty.
-  const presenter = firstOrSelf(f.Presenter) || f["Presenter (if not listed)"] || "";
+  // Note: "Presenter" is a linked-record field, so Airtable's API returns
+  // it as an internal record ID (like "recXXXXXXXX"), not a readable name.
+  // We never display that raw ID — only the text override field below, or
+  // the "Ensemble/Organization Name" lookup (handled separately).
+  const presenter = f["Presenter (if not listed)"] || "";
 
   return {
     id: record.id,
@@ -101,8 +103,10 @@ export async function fetchPublicEvents(): Promise<PublicEvent[]> {
     offset = data.offset;
   } while (offset);
 
+  const today = new Date().toISOString().slice(0, 10);
+
   return records
     .map(mapRecord)
-    .filter((e) => e.concertName && e.date)
+    .filter((e) => e.concertName && e.date && e.date >= today)
     .sort((a, b) => a.date.localeCompare(b.date));
 }

@@ -21,6 +21,7 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => {
         if (data.error) setError(data.error);
+        // The API already only returns events from today onward.
         setEvents(data.events ?? []);
       })
       .catch(() => setError("Could not load events right now."))
@@ -48,11 +49,7 @@ export default function Home() {
     });
   }, [events, query, activeTags]);
 
-  const today = new Date().toISOString().slice(0, 10);
-  const upcoming = useMemo(
-    () => events.filter((e) => e.date >= today).slice(0, 4),
-    [events, today]
-  );
+  const upcoming = useMemo(() => events.slice(0, 4), [events]);
 
   function toggleTag(tag: string) {
     setActiveTags((prev) =>
@@ -67,9 +64,9 @@ export default function Home() {
       {/* Hero: "on stage this week" program strip. Numbering here is
           legitimate — these are literally the next concerts in date order. */}
       {upcoming.length > 0 && (
-        <section className="bg-ink-soft border-b-4 border-red">
+        <section className="bg-paper-dim border-b-4 border-ink">
           <div className="mx-auto max-w-6xl px-6 py-10">
-            <h2 className="font-display text-2xl sm:text-3xl text-paper mb-6">
+            <h2 className="font-display text-2xl sm:text-3xl text-ink mb-6">
               On Stage This Week
             </h2>
             <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -78,15 +75,15 @@ export default function Home() {
                   <span className="font-display text-3xl text-red block leading-none mb-2">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p className="font-body font-semibold text-lg leading-snug text-paper">
+                  <p className="font-body font-semibold text-lg leading-snug text-ink">
                     {e.concertName}
                   </p>
-                  <p className="mt-1 font-mono text-xs text-cream-dim">
+                  <p className="mt-1 font-mono text-xs text-muted">
                     {formatEventDate(e.date)}
                     {e.startTime ? ` · ${e.startTime}` : ""}
                   </p>
                   {e.ensembleName && (
-                    <p className="text-sm text-cream-dim mt-0.5">{e.ensembleName}</p>
+                    <p className="text-sm text-muted mt-0.5">{e.ensembleName}</p>
                   )}
                 </li>
               ))}
@@ -107,11 +104,11 @@ export default function Home() {
 
       <section id="events" className="mx-auto max-w-6xl px-6 py-10">
         {loading && (
-          <p className="font-mono text-sm text-cream-dim">Loading concerts…</p>
+          <p className="font-mono text-sm text-muted">Loading concerts…</p>
         )}
 
         {error && !loading && (
-          <p className="font-mono text-sm text-paper bg-red/20 border-2 border-red rounded-lg px-4 py-3">
+          <p className="font-mono text-sm text-ink bg-red/10 border-2 border-red rounded-lg px-4 py-3">
             {error} If this keeps happening, double-check the Airtable
             connection in your environment variables.
           </p>
@@ -128,10 +125,10 @@ export default function Home() {
         )}
       </section>
 
-      <footer className="bg-ink-soft border-t-4 border-red">
+      <footer className="bg-paper-dim border-t-4 border-ink">
         <div className="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-          <p className="font-display text-base text-paper">Classical 615</p>
-          <p className="font-mono text-xs text-cream-dim">
+          <p className="font-display text-base text-ink">Classical 615</p>
+          <p className="font-mono text-xs text-muted">
             Know about a concert? Submit it for review — see the link above.
           </p>
         </div>

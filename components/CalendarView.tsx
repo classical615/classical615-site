@@ -45,32 +45,32 @@ export function CalendarView({ events }: { events: PublicEvent[] }) {
       <div className="flex items-center justify-between mb-4">
         <button
           onClick={() => setCursor((c) => subMonths(c, 1))}
-          className="font-body font-bold text-xs uppercase tracking-widish text-cream-dim hover:text-red-bright px-2 py-1"
+          className="font-body font-bold text-xs uppercase tracking-widish text-muted hover:text-red px-2 py-1"
           aria-label="Previous month"
         >
           ← Prev
         </button>
-        <h2 className="font-display text-xl text-paper">
+        <h2 className="font-display text-xl text-ink">
           {format(cursor, "MMMM yyyy")}
         </h2>
         <button
           onClick={() => setCursor((c) => addMonths(c, 1))}
-          className="font-body font-bold text-xs uppercase tracking-widish text-cream-dim hover:text-red-bright px-2 py-1"
+          className="font-body font-bold text-xs uppercase tracking-widish text-muted hover:text-red px-2 py-1"
           aria-label="Next month"
         >
           Next →
         </button>
       </div>
 
-      <div className="grid grid-cols-7 gap-px bg-ink-line text-center font-mono text-[10px] uppercase tracking-widish text-cream-dim">
+      <div className="grid grid-cols-7 gap-px bg-line text-center font-mono text-[10px] uppercase tracking-widish text-muted">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-          <div key={d} className="bg-ink py-2">
+          <div key={d} className="bg-paper py-2">
             {d}
           </div>
         ))}
       </div>
 
-      <div className="grid grid-cols-7 gap-px bg-ink-line">
+      <div className="grid grid-cols-7 gap-px bg-line">
         {days.map((day) => {
           const key = format(day, "yyyy-MM-dd");
           const dayEvents = eventsByDay.get(key) ?? [];
@@ -81,17 +81,17 @@ export function CalendarView({ events }: { events: PublicEvent[] }) {
             <button
               key={key}
               onClick={() => setSelected(dayEvents.length ? day : null)}
-              className={`bg-ink min-h-[72px] p-2 text-left flex flex-col gap-1 transition-colors ${
+              className={`bg-paper min-h-[72px] p-2 text-left flex flex-col gap-1 transition-colors ${
                 inMonth ? "" : "opacity-30"
               } ${isSelected ? "ring-2 ring-inset ring-red" : ""} ${
-                dayEvents.length ? "hover:bg-ink-soft cursor-pointer" : "cursor-default"
+                dayEvents.length ? "hover:bg-paper-dim cursor-pointer" : "cursor-default"
               }`}
             >
-              <span className="font-mono text-xs text-cream-dim">{format(day, "d")}</span>
+              <span className="font-mono text-xs text-muted">{format(day, "d")}</span>
               {dayEvents.length > 0 && (
                 <span className="mt-auto flex items-center gap-1">
                   <span className="h-2 w-2 rounded-full bg-red" />
-                  <span className="font-mono text-[10px] text-red-bright">
+                  <span className="font-mono text-[10px] text-red">
                     {dayEvents.length}
                   </span>
                 </span>
@@ -103,7 +103,7 @@ export function CalendarView({ events }: { events: PublicEvent[] }) {
 
       {selected && (
         <div className="mt-8">
-          <p className="font-mono text-xs uppercase tracking-widish text-red-bright mb-3">
+          <p className="font-mono text-xs uppercase tracking-widish text-red mb-3">
             {format(selected, "EEEE, MMMM d")}
           </p>
           <EventList events={selectedEvents} />

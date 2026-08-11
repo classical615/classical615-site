@@ -1,5 +1,7 @@
 "use client";
 
+import { tagColor } from "@/lib/tagColor";
+
 type Props = {
   query: string;
   onQueryChange: (v: string) => void;
@@ -20,7 +22,7 @@ export function SearchFilters({
   onViewChange,
 }: Props) {
   return (
-    <div className="sticky top-0 z-10 bg-ink/95 backdrop-blur border-b-4 border-red py-4">
+    <div className="sticky top-0 z-10 bg-paper/95 backdrop-blur border-b-4 border-ink py-4">
       <div className="mx-auto max-w-6xl px-6 flex flex-col gap-3">
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
           <input
@@ -29,15 +31,15 @@ export function SearchFilters({
             onChange={(e) => onQueryChange(e.target.value)}
             placeholder="Search concerts, ensembles, venues…"
             aria-label="Search events"
-            className="flex-1 bg-ink-soft border-2 border-ink-line rounded-lg px-4 py-2.5 text-sm text-paper placeholder:text-cream-dim/70 focus:border-red outline-none"
+            className="flex-1 bg-paper border-2 border-ink rounded-lg px-4 py-2.5 text-sm text-ink placeholder:text-muted focus:border-red outline-none"
           />
           <div className="flex gap-1 font-body font-bold text-xs uppercase tracking-widish shrink-0">
             <button
               onClick={() => onViewChange("list")}
               className={`px-3 py-2.5 rounded-lg border-2 ${
                 view === "list"
-                  ? "border-red text-red-bright bg-red/10"
-                  : "border-ink-line text-cream-dim hover:text-paper"
+                  ? "border-red text-red bg-red/10"
+                  : "border-ink text-muted hover:text-ink"
               }`}
             >
               List
@@ -47,8 +49,8 @@ export function SearchFilters({
               id="calendar"
               className={`px-3 py-2.5 rounded-lg border-2 ${
                 view === "calendar"
-                  ? "border-red text-red-bright bg-red/10"
-                  : "border-ink-line text-cream-dim hover:text-paper"
+                  ? "border-red text-red bg-red/10"
+                  : "border-ink text-muted hover:text-ink"
               }`}
             >
               Calendar
@@ -60,14 +62,15 @@ export function SearchFilters({
           <div className="flex flex-wrap gap-1.5">
             {allTags.map((tag) => {
               const active = activeTags.includes(tag);
+              const c = tagColor(tag);
               return (
                 <button
                   key={tag}
                   onClick={() => onToggleTag(tag)}
                   className={`font-mono text-[10px] uppercase tracking-widish rounded-full px-2.5 py-1 border-2 transition-colors ${
                     active
-                      ? "bg-red text-paper border-red"
-                      : "border-ink-line text-cream-dim hover:border-red/60 hover:text-paper"
+                      ? `${c.bg} ${c.text} border-transparent`
+                      : "border-ink/20 text-muted hover:border-ink/50 hover:text-ink"
                   }`}
                 >
                   {tag}

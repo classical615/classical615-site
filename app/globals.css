@@ -7,11 +7,11 @@
     scroll-behavior: smooth;
   }
   ::selection {
-    background: #d10d07;
+    background: #d93a2b;
     color: #ffffff;
   }
   :focus-visible {
-    outline: 3px solid #d10d07;
+    outline: 3px solid #d93a2b;
     outline-offset: 2px;
   }
 }

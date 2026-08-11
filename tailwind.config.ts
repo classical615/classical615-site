@@ -5,19 +5,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Direction B: black and white, built from the real logo art, with
-        // one accent color (red, sampled from the logo) doing all the work
-        // that color would otherwise do.
+        // Direction C: white background, black text, accents pulled from
+        // the Classical 615 palette swatches.
         ink: "#111111",
-        "ink-soft": "#1B1B1B",
-        "ink-line": "#2E2E2E",
+        "ink-soft": "#111111",
         paper: "#FFFFFF",
-        "paper-dim": "#F4F4F4",
-        "paper-line": "#E2E2E2",
-        red: "#D10D07",
-        "red-bright": "#EB2A21",
-        cream: "#FFFFFF",
-        "cream-dim": "#9A9A9A",
+        "paper-dim": "#F6F6F6",
+        line: "#E4E4E4",
+        muted: "#6B6B6B",
+        red: "#D93A2B",
+        "red-dark": "#9C2A1F",
+        purple: "#DF9BF2",
+        "purple-dark": "#5B2A6B",
+        green: "#2C4031",
+        yellow: "#D9CF43",
+        "yellow-dark": "#5A5416",
+        orange: "#D97A43",
+        "orange-dark": "#663717",
       },
       fontFamily: {
         display: ["var(--font-bungee)", "sans-serif"],
