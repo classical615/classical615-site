@@ -58,13 +58,16 @@ export default function Home() {
   }
 
   return (
-    <main>
+    <main className="bg-cream min-h-screen">
       <SiteHeader />
 
-      {/* Hero: "on stage this week" program strip. Numbering here is
-          legitimate — these are literally the next concerts in date order. */}
+      {/* Hero: "on stage this week" program strip, with a direct ticket
+          link on each — this is the highest-intent spot on the page, so
+          buying shouldn't require a click into a card first. Numbering
+          here is legitimate — these are literally the next concerts in
+          date order. */}
       {upcoming.length > 0 && (
-        <section className="bg-paper-dim border-b-4 border-ink">
+        <section className="bg-green-tint border-b-4 border-ink">
           <div className="mx-auto max-w-6xl px-6 py-10">
             <h2 className="font-display text-2xl sm:text-3xl text-ink mb-6">
               On Stage This Week
@@ -84,6 +87,16 @@ export default function Home() {
                   </p>
                   {e.ensembleName && (
                     <p className="text-sm text-muted mt-0.5">{e.ensembleName}</p>
+                  )}
+                  {e.ticketUrl && (
+                    <a
+                      href={e.ticketUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-2 inline-block font-mono text-xs font-bold uppercase tracking-widish text-red hover:text-ink transition-colors"
+                    >
+                      Tickets ↗
+                    </a>
                   )}
                 </li>
               ))}
@@ -108,7 +121,7 @@ export default function Home() {
         )}
 
         {error && !loading && (
-          <p className="font-mono text-sm text-ink bg-red/10 border-2 border-red rounded-lg px-4 py-3">
+          <p className="font-mono text-sm text-ink bg-red-tint border-2 border-red rounded-lg px-4 py-3">
             {error} If this keeps happening, double-check the Airtable
             connection in your environment variables.
           </p>
@@ -125,7 +138,7 @@ export default function Home() {
         )}
       </section>
 
-      <footer className="bg-paper-dim border-t-4 border-ink">
+      <footer className="bg-orange-tint border-t-4 border-ink">
         <div className="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <p className="font-display text-base text-ink">Classical 615</p>
           <p className="font-mono text-xs text-muted">

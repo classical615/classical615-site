@@ -25,6 +25,7 @@ type AirtableFields = {
   Location?: string;
   "Ticket Price"?: string;
   "Ticket URL"?: string;
+  Description?: string;
   Tags?: string[];
 };
 
@@ -61,6 +62,7 @@ function mapRecord(record: AirtableRecord): PublicEvent {
     location: f.Location || "",
     ticketPrice: f["Ticket Price"] || "",
     ticketUrl: f["Ticket URL"] || "",
+    description: f.Description || "",
     tags: f.Tags || [],
   };
 }

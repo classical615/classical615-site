@@ -1,7 +1,7 @@
 // Public-facing shape of an event — only what belongs on the website.
-// Everything else in the Airtable base (Description, Collab?, Status,
-// Submission Source, Submitted Notes, Contact Email, Internal Notes,
-// Created By) is intentionally left out — it's stripped server-side in
+// Everything else in the Airtable base (Collab?, Status, Submission Source,
+// Submitted Notes, Contact Email, Internal Notes, Created By) is
+// intentionally left out — it's stripped server-side in
 // app/api/events/route.ts before it ever reaches the browser.
 export type PublicEvent = {
   id: string;
@@ -13,5 +13,6 @@ export type PublicEvent = {
   location: string;
   ticketPrice: string;
   ticketUrl: string;
+  description: string;
   tags: string[];
 };

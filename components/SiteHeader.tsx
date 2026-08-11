@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export function SiteHeader() {
   return (
-    <header className="bg-paper border-b-4 border-ink">
+    <header className="bg-cream border-b-4 border-ink">
       <div className="mx-auto max-w-6xl px-6 pt-8 pb-6">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div className="flex items-center gap-4">

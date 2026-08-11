@@ -22,7 +22,7 @@ export function SearchFilters({
   onViewChange,
 }: Props) {
   return (
-    <div className="sticky top-0 z-10 bg-paper/95 backdrop-blur border-b-4 border-ink py-4">
+    <div className="sticky top-0 z-10 bg-cream/95 backdrop-blur border-b-4 border-ink py-4">
       <div className="mx-auto max-w-6xl px-6 flex flex-col gap-3">
         <div className="flex flex-col sm:flex-row sm:items-center gap-3">
           <input

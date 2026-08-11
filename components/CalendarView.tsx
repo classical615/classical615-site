@@ -64,7 +64,7 @@ export function CalendarView({ events }: { events: PublicEvent[] }) {
 
       <div className="grid grid-cols-7 gap-px bg-line text-center font-mono text-[10px] uppercase tracking-widish text-muted">
         {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((d) => (
-          <div key={d} className="bg-paper py-2">
+          <div key={d} className="bg-cream py-2">
             {d}
           </div>
         ))}
@@ -81,7 +81,7 @@ export function CalendarView({ events }: { events: PublicEvent[] }) {
             <button
               key={key}
               onClick={() => setSelected(dayEvents.length ? day : null)}
-              className={`bg-paper min-h-[72px] p-2 text-left flex flex-col gap-1 transition-colors ${
+              className={`bg-cream min-h-[72px] p-2 text-left flex flex-col gap-1 transition-colors ${
                 inMonth ? "" : "opacity-30"
               } ${isSelected ? "ring-2 ring-inset ring-red" : ""} ${
                 dayEvents.length ? "hover:bg-paper-dim cursor-pointer" : "cursor-default"
