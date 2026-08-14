@@ -17,6 +17,7 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [activeTags, setActiveTags] = useState<string[]>([]);
   const [view, setView] = useState<"list" | "calendar">("list");
+  const [visibleCount, setVisibleCount] = useState(9);
 
   useEffect(() => {
     fetch("/api/events")
@@ -58,6 +59,10 @@ export default function Home() {
       .slice(0, 10);
     return events.filter((e) => e.date <= sevenDaysOut).slice(0, 4);
   }, [events]);
+
+  useEffect(() => {
+    setVisibleCount(9);
+  }, [query, activeTags]);
 
   function toggleTag(tag: string) {
     setActiveTags((prev) =>
@@ -120,6 +125,8 @@ export default function Home() {
         </section>
       )}
 
+      <NewsletterSection />
+
       <SearchFilters
         query={query}
         onQueryChange={setQuery}
@@ -145,15 +152,25 @@ export default function Home() {
         {!loading && !error && (
           <>
             {view === "list" ? (
-              <EventList events={filtered} />
+              <>
+                <EventList events={filtered.slice(0, visibleCount)} />
+                {filtered.length > visibleCount && (
+                  <div className="mt-8 text-center">
+                    <button
+                      onClick={() => setVisibleCount((c) => c + 9)}
+                      className="font-body font-bold text-sm uppercase tracking-widish text-paper bg-ink rounded-lg px-6 py-3 hover:bg-red transition-colors"
+                    >
+                      Show more events ({filtered.length - visibleCount} more)
+                    </button>
+                  </div>
+                )}
+              </>
             ) : (
               <CalendarView events={filtered} />
             )}
           </>
         )}
       </section>
-
-      <NewsletterSection />
 
       <footer className="bg-orange border-t-4 border-ink">
         <div className="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
