@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SocialLinks } from "./SocialLinks";
 
 export function SiteHeader() {
   return (
@@ -22,22 +23,25 @@ export function SiteHeader() {
               </p>
             </div>
           </div>
-          <nav className="flex items-center gap-6 font-body font-semibold text-sm uppercase tracking-widish text-paper">
-            <a href="#events" className="hover:text-yellow transition-colors">
-              This Week
-            </a>
-            <a href="#calendar" className="hover:text-yellow transition-colors">
-              Calendar
-            </a>
-            <a
-              href="https://airtable.com/appFeVe6brZ3ko9Ww/shr1yAX4CGBt7jAoR"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-yellow transition-colors"
-            >
-              Submit an Event
-            </a>
-          </nav>
+          <div className="flex items-center gap-6">
+            <nav className="flex items-center gap-6 font-body font-semibold text-sm uppercase tracking-widish text-paper">
+              <a href="#events" className="hover:text-yellow transition-colors">
+                This Week
+              </a>
+              <a href="#calendar" className="hover:text-yellow transition-colors">
+                Calendar
+              </a>
+              <a
+                href="https://airtable.com/appFeVe6brZ3ko9Ww/shr1yAX4CGBt7jAoR"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-yellow transition-colors"
+              >
+                Submit an Event
+              </a>
+            </nav>
+            <SocialLinks />
+          </div>
         </div>
       </div>
     </header>

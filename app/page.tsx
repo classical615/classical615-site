@@ -5,6 +5,8 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SearchFilters } from "@/components/SearchFilters";
 import { EventList } from "@/components/EventList";
 import { CalendarView } from "@/components/CalendarView";
+import { NewsletterSection } from "@/components/NewsletterSection";
+import { SocialLinks } from "@/components/SocialLinks";
 import { formatEventDate } from "@/lib/format";
 import type { PublicEvent } from "@/lib/types";
 
@@ -49,7 +51,13 @@ export default function Home() {
     });
   }, [events, query, activeTags]);
 
-  const upcoming = useMemo(() => events.slice(0, 4), [events]);
+  const upcoming = useMemo(() => {
+    const now = new Date();
+    const sevenDaysOut = new Date(now.getTime() + 7 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .slice(0, 10);
+    return events.filter((e) => e.date <= sevenDaysOut).slice(0, 4);
+  }, [events]);
 
   function toggleTag(tag: string) {
     setActiveTags((prev) =>
@@ -63,44 +71,51 @@ export default function Home() {
 
       {/* Hero: "on stage this week" program strip, with a direct ticket
           link on each — this is the highest-intent spot on the page, so
-          buying shouldn't require a click into a card first. Numbering
-          here is legitimate — these are literally the next concerts in
-          date order. */}
-      {upcoming.length > 0 && (
+          buying shouldn't require a click into a card first. Only shows
+          events in the next 7 days; falls back to a pointer toward the
+          full list below when the week ahead is empty. Numbering here is
+          legitimate — these are literally the next concerts in date order. */}
+      {!loading && (
         <section className="bg-yellow border-b-4 border-ink">
           <div className="mx-auto max-w-6xl px-6 py-10">
             <h2 className="font-display text-2xl sm:text-3xl text-yellow-dark mb-6">
               On Stage This Week
             </h2>
-            <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {upcoming.map((e, i) => (
-                <li key={e.id} className="fade-up bg-paper border-2 border-ink rounded-xl p-4" style={{ animationDelay: `${i * 60}ms` }}>
-                  <span className="font-display text-2xl text-red block leading-none mb-2">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <p className="font-body font-semibold text-lg leading-snug text-ink">
-                    {e.concertName}
-                  </p>
-                  <p className="mt-1 font-mono text-xs text-muted">
-                    {formatEventDate(e.date)}
-                    {e.startTime ? ` · ${e.startTime}` : ""}
-                  </p>
-                  {e.ensembleName && (
-                    <p className="text-sm text-muted mt-0.5">{e.ensembleName}</p>
-                  )}
-                  {e.ticketUrl && (
-                    <a
-                      href={e.ticketUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-2 inline-block font-mono text-xs font-bold uppercase tracking-widish text-red hover:text-ink transition-colors"
-                    >
-                      Tickets ↗
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ol>
+            {upcoming.length > 0 ? (
+              <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                {upcoming.map((e, i) => (
+                  <li key={e.id} className="fade-up bg-paper border-2 border-ink rounded-xl p-4" style={{ animationDelay: `${i * 60}ms` }}>
+                    <span className="font-display text-2xl text-red block leading-none mb-2">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <p className="font-body font-semibold text-lg leading-snug text-ink">
+                      {e.concertName}
+                    </p>
+                    <p className="mt-1 font-mono text-xs text-muted">
+                      {formatEventDate(e.date)}
+                      {e.startTime ? ` · ${e.startTime}` : ""}
+                    </p>
+                    {e.ensembleName && (
+                      <p className="text-sm text-muted mt-0.5">{e.ensembleName}</p>
+                    )}
+                    {e.ticketUrl && (
+                      <a
+                        href={e.ticketUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-2 inline-block font-mono text-xs font-bold uppercase tracking-widish text-red hover:text-ink transition-colors"
+                      >
+                        Tickets ↗
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <p className="font-body text-ink/80">
+                Nothing on the calendar in the next 7 days — but take a look below for what's coming up next.
+              </p>
+            )}
           </div>
         </section>
       )}
@@ -138,12 +153,15 @@ export default function Home() {
         )}
       </section>
 
+      <NewsletterSection />
+
       <footer className="bg-orange border-t-4 border-ink">
-        <div className="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+        <div className="mx-auto max-w-6xl px-6 py-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <p className="font-display text-base text-paper">Classical 615</p>
           <p className="font-mono text-xs text-paper/80">
             Know about a concert? Submit it for review — see the link above.
           </p>
+          <SocialLinks />
         </div>
       </footer>
     </main>
