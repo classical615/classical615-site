@@ -1,4 +1,4 @@
-// App Router version of the endpoint Vercel's weekly Cron Job calls automatically.
+// The endpoint Vercel's weekly Cron Job calls automatically.
 // Protected by a secret so random visitors can't trigger it themselves.
 
 import { runScrape } from '../../../../lib/runScrape.js';
