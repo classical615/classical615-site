@@ -76,10 +76,11 @@ export default function Home() {
 
       {/* Hero: "on stage this week" program strip, with a direct ticket
           link on each — this is the highest-intent spot on the page, so
-          buying shouldn't require a click into a card first. Only shows
-          events in the next 7 days; falls back to a pointer toward the
-          full list below when the week ahead is empty. Numbering here is
-          legitimate — these are literally the next concerts in date order. */}
+          buying shouldn't require a click into a card first. Cards match
+          the regular event card's info (date, name, ensemble, location,
+          tickets) minus tags, kept simple. Only shows events in the next
+          7 days; falls back to a pointer toward the full list below when
+          the week ahead is empty. */}
       {!loading && (
         <section className="bg-yellow border-b-4 border-ink">
           <div className="mx-auto max-w-6xl px-6 py-10">
@@ -90,18 +91,18 @@ export default function Home() {
               <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {upcoming.map((e, i) => (
                   <li key={e.id} className="fade-up bg-paper border-2 border-ink rounded-xl p-4" style={{ animationDelay: `${i * 60}ms` }}>
-                    <span className="font-display text-2xl text-red block leading-none mb-2">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <p className="font-body font-semibold text-lg leading-snug text-ink">
-                      {e.concertName}
-                    </p>
-                    <p className="mt-1 font-mono text-xs text-muted">
+                    <p className="font-mono text-xs uppercase tracking-widish text-red font-semibold mb-2">
                       {formatEventDate(e.date)}
                       {e.startTime ? ` · ${e.startTime}` : ""}
                     </p>
+                    <p className="font-body font-semibold text-lg leading-snug text-ink">
+                      {e.concertName}
+                    </p>
                     {e.ensembleName && (
                       <p className="text-sm text-muted mt-0.5">{e.ensembleName}</p>
+                    )}
+                    {e.location && (
+                      <p className="text-sm text-muted">{e.location}</p>
                     )}
                     {e.ticketUrl && (
                       <a
