@@ -81,7 +81,7 @@ export function EventCard({ event }: { event: PublicEvent }) {
         <span className="font-mono text-sm font-semibold text-ink/70">
           {event.ticketPrice || "Free"}
         </span>
-        {event.ticketUrl ? (
+        {event.ticketUrl && (
           <a
             href={event.ticketUrl}
             target="_blank"
@@ -90,10 +90,6 @@ export function EventCard({ event }: { event: PublicEvent }) {
           >
             Tickets ↗
           </a>
-        ) : (
-          <span className="font-mono text-xs uppercase tracking-widish text-muted">
-            Details soon
-          </span>
         )}
       </div>
     </article>
