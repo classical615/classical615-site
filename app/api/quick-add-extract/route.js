@@ -83,11 +83,17 @@ export async function POST(request) {
     const aiData = await aiRes.json();
     const rawText = aiData.content?.[0]?.text || '{}';
 
+    // The AI sometimes wraps its answer in ```json fences or adds a stray sentence
+    // before/after the JSON even when told not to - this pulls out just the JSON
+    // object itself so parsing works reliably either way.
+    const jsonMatch = rawText.match(/\{[\s\S]*\}/);
+    const cleanedJson = jsonMatch ? jsonMatch[0] : rawText;
+
     let extracted;
     try {
-      extracted = JSON.parse(rawText);
+      extracted = JSON.parse(cleanedJson);
     } catch {
-      return Response.json({ error: 'Could not understand the AI response - try again' }, { status: 500 });
+      return Response.json({ error: `Could not understand the AI response - try again. Raw response: ${rawText.slice(0, 200)}` }, { status: 500 });
     }
 
     return Response.json({ ...extracted, sourceUrl: url });
