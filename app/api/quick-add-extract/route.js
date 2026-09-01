@@ -1,5 +1,7 @@
-// Step 1 of the Quick Add tool: given a URL, fetches that page and asks Claude
-// to read it and pull out the concert details as clean, structured data.
+// Step 1 of the Quick Add tool: given a URL, uses ScrapingBee to load that page
+// exactly like a real browser would (running any JavaScript on it first, so
+// content that loads dynamically actually shows up), then asks Claude to read
+// the result and pull out the concert details as clean, structured data.
 // This doesn't touch Airtable at all - it just returns a preview for you to
 // look over before anything gets saved.
 
@@ -52,11 +54,12 @@ export async function POST(request) {
       return Response.json({ error: 'No URL provided' }, { status: 400 });
     }
 
-    const pageRes = await fetch(url, {
-      headers: { 'User-Agent': 'Mozilla/5.0 (compatible; Classical615QuickAdd/1.0)' },
-    });
+    const pageRes = await fetch(
+      `https://app.scrapingbee.com/api/v1/?api_key=${process.env.SCRAPINGBEE_API_KEY}&url=${encodeURIComponent(url)}&render_js=true`
+    );
     if (!pageRes.ok) {
-      return Response.json({ error: `Could not load that page (${pageRes.status})` }, { status: 400 });
+      const errText = await pageRes.text();
+      return Response.json({ error: `Could not load that page (${pageRes.status}): ${errText.slice(0, 200)}` }, { status: 400 });
     }
     const html = await pageRes.text();
     const cleanedHtml = cleanHtmlForExtraction(html);
