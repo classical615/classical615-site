@@ -24,20 +24,28 @@ export function SiteHeader() {
             </div>
           </div>
           <div className="flex items-center gap-6">
-            <nav className="flex items-center gap-6 font-body font-semibold text-sm uppercase tracking-widish text-paper">
+            <nav className="flex items-center gap-6 font-body font-semibold text-sm uppercase tracking-widest text-paper">
               <a href="#events" className="hover:text-yellow transition-colors">
                 This Week
               </a>
               <a href="#calendar" className="hover:text-yellow transition-colors">
                 Calendar
               </a>
-              <a
+              
                 href="https://airtable.com/appFeVe6brZ3ko9Ww/shr1yAX4CGBt7jAoR"
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-yellow transition-colors"
               >
                 Submit an Event
+              </a>
+              
+                href="https://abcnashville.org/donations/classical-615/"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full bg-yellow px-5 py-2 text-ink hover:bg-paper transition-colors"
+              >
+                Donate
               </a>
             </nav>
             <SocialLinks />
