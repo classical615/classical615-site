@@ -18,6 +18,7 @@ export function SiteHeader() {
               <a href="#events" className="hover:text-yellow transition-colors">This Week</a>
               <a href="#calendar" className="hover:text-yellow transition-colors">Calendar</a>
               <a href="https://airtable.com/appFeVe6brZ3ko9Ww/shr1yAX4CGBt7jAoR" target="_blank" rel="noreferrer" className="hover:text-yellow transition-colors">Submit an Event</a>
+              <a href="https://classicallycurious.substack.com/" target="_blank" rel="noreferrer" className="hover:text-yellow transition-colors">Substack</a>
               <a href="https://abcnashville.org/donations/classical-615/" target="_blank" rel="noreferrer" className="rounded-full bg-yellow px-5 py-2 text-ink hover:bg-paper transition-colors">Donate</a>
             </nav>
             <SocialLinks />
