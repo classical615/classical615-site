@@ -12,6 +12,10 @@ const API_KEY = process.env.AIRTABLE_SCRAPER_API_KEY;
 const headers = { Authorization: `Bearer ${API_KEY}` };
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// Status values look like "⏳ Pending" or "✅ Approved", so we check for the word
+// rather than an exact match.
+const isPending = (row) => String(row.fields['Status'] || '').includes('Pending');
+
 // Pulls every row that has a BLAIR-ID tag, one page at a time.
 async function fetchAllBlairRows() {
   const rows = [];
@@ -81,7 +85,7 @@ export async function GET(request) {
       group.sort((a, b) => new Date(a.createdTime) - new Date(b.createdTime));
 
       const keeper =
-        group.find((r) => r.fields['Status'] && r.fields['Status'] !== 'Pending') || // never delete an approved row
+        group.find((r) => !isPending(r)) || // never delete an approved or rejected row
         group.find((r) => String(r.fields['Internal Notes'] || '').includes('Rescheduled')) ||
         group[0];
 
@@ -89,7 +93,7 @@ export async function GET(request) {
 
       for (const r of group) {
         if (r.id === keeper.id) continue;
-        if (r.fields['Status'] && r.fields['Status'] !== 'Pending') continue; // extra safety
+        if (!isPending(r)) continue; // extra safety - only ever delete Pending rows
         toDelete.push({ id: r.id, blairId, name: r.fields['Concert Name'], date: r.fields['Date'], status: r.fields['Status'] });
       }
     }
