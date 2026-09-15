@@ -6,6 +6,7 @@ import { SearchFilters } from "@/components/SearchFilters";
 import { EventList } from "@/components/EventList";
 import { CalendarView } from "@/components/CalendarView";
 import { NewsletterSection } from "@/components/NewsletterSection";
+import { SubstackPreview } from "@/components/SubstackPreview";
 import { SocialLinks } from "@/components/SocialLinks";
 import { formatEventDate } from "@/lib/format";
 import type { PublicEvent } from "@/lib/types";
@@ -105,12 +106,7 @@ export default function Home() {
                       <p className="text-sm text-muted">{e.location}</p>
                     )}
                     {e.ticketUrl && (
-                      <a
-                        href={e.ticketUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-2 inline-block font-mono text-xs font-bold uppercase tracking-widish text-red hover:text-ink transition-colors"
-                      >
+                      <a href={e.ticketUrl} target="_blank" rel="noreferrer" className="mt-2 inline-block font-mono text-xs font-bold uppercase tracking-widish text-red hover:text-ink transition-colors">
                         Tickets ↗
                       </a>
                     )}
@@ -127,6 +123,8 @@ export default function Home() {
       )}
 
       <NewsletterSection />
+
+      <SubstackPreview />
 
       <SearchFilters
         query={query}
@@ -157,10 +155,7 @@ export default function Home() {
                 <EventList events={filtered.slice(0, visibleCount)} />
                 {filtered.length > visibleCount && (
                   <div className="mt-8 text-center">
-                    <button
-                      onClick={() => setVisibleCount((c) => c + 9)}
-                      className="font-body font-bold text-sm uppercase tracking-widish text-paper bg-ink rounded-lg px-6 py-3 hover:bg-red transition-colors"
-                    >
+                    <button onClick={() => setVisibleCount((c) => c + 9)} className="font-body font-bold text-sm uppercase tracking-widish text-paper bg-ink rounded-lg px-6 py-3 hover:bg-red transition-colors">
                       Show more events ({filtered.length - visibleCount} more)
                     </button>
                   </div>
