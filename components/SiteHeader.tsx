@@ -1,67 +1,37 @@
-import { SiteHeader } from "../../components/SiteHeader";
+import Image from "next/image";
+import { SocialLinks } from "./SocialLinks";
 
-export default function BingoPage() {
+export function SiteHeader() {
   return (
-    <div className="min-h-screen bg-purple-pale font-body text-ink">
-      <SiteHeader />
-
-      <section className="bg-yellow border-b-4 border-ink">
-        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
-          <h1 className="font-display text-4xl sm:text-5xl leading-none">Classical 615 Bingo</h1>
-          <p className="mt-4 text-lg sm:text-xl">Go to concerts. Mark your card. Win a prize package valued at over $1,000.</p>
+    <header className="bg-green border-b-4 border-ink">
+      <div className="mx-auto max-w-6xl px-6 pt-8 pb-6">
+        <div className="flex flex-wrap items-center justify-between gap-6">
+          <a href="/" className="flex items-center gap-4">
+            <Image src="/logo-white.png" alt="Classical 615 logo" width={56} height={56} className="shrink-0" />
+            <div>
+              <h1 className="font-display text-2xl sm:text-3xl text-paper leading-none">Classical 615</h1>
+              <p className="mt-1 font-body text-sm text-purple-pale">Your classical music hub in Nashville, TN</p>
+            </div>
+          </a>
+          <div className="flex items-center gap-6">
+            <nav className="flex items-center gap-6 font-body font-semibold text-sm uppercase tracking-widest text-paper">
+              <a href="/#events" className="hover:text-yellow transition-colors">This Week</a>
+              <a href="/#calendar" className="hover:text-yellow transition-colors">Calendar</a>
+              <details className="relative">
+                <summary className="list-none cursor-pointer hover:text-yellow transition-colors select-none">Initiatives &#9662;</summary>
+                <div className="absolute left-0 top-full z-50 mt-3 w-64 overflow-hidden rounded-xl border-2 border-ink bg-paper shadow-lg">
+                  <a href="/jam" className="block px-5 py-3 text-ink hover:bg-yellow transition-colors">Classical 615 Jam</a>
+                  <a href="/bingo" className="block px-5 py-3 text-ink hover:bg-yellow transition-colors">Bingo</a>
+                  <a href="https://classicallycurious.substack.com/" target="_blank" rel="noreferrer" className="block px-5 py-3 text-ink hover:bg-yellow transition-colors">Classically Curious</a>
+                </div>
+              </details>
+              <a href="https://airtable.com/appFeVe6brZ3ko9Ww/shr1yAX4CGBt7jAoR" target="_blank" rel="noreferrer" className="hover:text-yellow transition-colors">Submit an Event</a>
+              <a href="https://abcnashville.org/donations/classical-615/" target="_blank" rel="noreferrer" className="rounded-full bg-yellow px-5 py-2 text-ink hover:bg-paper transition-colors">Donate</a>
+            </nav>
+            <SocialLinks />
+          </div>
         </div>
-      </section>
-
-      <section className="mx-auto max-w-3xl px-6 py-12 space-y-8">
-        <div className="rounded-2xl bg-paper p-8 shadow-sm">
-          <h2 className="font-display text-2xl mb-4">What it is</h2>
-          <p className="leading-relaxed">Classical 615 Bingo is a season-long game from Classical 615 with a big, huge, exciting grand prize for one lucky winner. Your bingo card is filled with Nashville classical concerts. Go to a concert, mark off the square. Complete a row, column, or diagonal, and you are entered to win.</p>
-        </div>
-
-        <div className="rounded-2xl bg-paper p-8 shadow-sm">
-          <h2 className="font-display text-2xl mb-4">Your bingo card</h2>
-          <div className="rounded-xl border-2 border-dashed border-ink px-6 py-12 text-center font-semibold">Bingo card coming soon!</div>
-        </div>
-
-        <div className="rounded-2xl bg-paper p-8 shadow-sm">
-          <h2 className="font-display text-2xl mb-4">How to play</h2>
-          <ol className="list-decimal pl-6 space-y-3 leading-relaxed">
-            <li>Get your bingo card at classical615.com/bingo.</li>
-            <li>Attend concerts on the card between now and June 15, 2027.</li>
-            <li>At each concert, take a selfie with something that shows you are there: the printed program, a poster in the lobby, or your ticket. It does not need to be fancy.</li>
-            <li>Once you have completed a row, column, or diagonal, email your selfies from every concert in that line to <a href="mailto:bingo@classical615.com" className="font-semibold text-orange underline">bingo@classical615.com</a> in one message. Include your name and tell us which squares you are claiming.</li>
-          </ol>
-        </div>
-
-        <div className="rounded-2xl bg-paper p-8 shadow-sm">
-          <h2 className="font-display text-2xl mb-4">Deadline</h2>
-          <p className="leading-relaxed">All submissions are due by <strong>June 15, 2027</strong>. Winners will be announced <strong>July 1, 2027</strong>.</p>
-        </div>
-
-        <div className="rounded-2xl bg-yellow p-8 shadow-sm">
-          <h2 className="font-display text-2xl mb-2">Prizes</h2>
-          <p className="mb-4 font-semibold">One winner takes it all. The full package is valued at over $1,000 and includes:</p>
-          <ul className="list-disc pl-6 space-y-2 leading-relaxed">
-            <li>7-concert Classical Series package from the Nashville Symphony</li>
-            <li>Nashville Opera 3-show subscription for the 2027-2028 season</li>
-            <li>Two tickets to a Nashville Ballet performance (any show except <em>The Nutcracker</em>)</li>
-            <li>Two tickets to a Vocal Arts Nashville concert</li>
-            <li>Belmont Orchestras T-shirt</li>
-            <li>Middle Tennessee Sinfonietta merch</li>
-          </ul>
-        </div>
-
-        <div className="rounded-2xl bg-paper p-8 shadow-sm">
-          <h2 className="font-display text-2xl mb-4">The fine print</h2>
-          <ul className="list-disc pl-6 space-y-2 text-sm leading-relaxed">
-            <li>Every verified bingo earns one entry into the drawing. The more bingos you complete, the more entries you have.</li>
-            <li>One concert counts for one square, even if it could fit more than one.</li>
-            <li>We reserve the right to confirm the winner&apos;s attendance with the participating ensembles.</li>
-            <li>The winner will be drawn at random from all entries and announced July 1, 2027.</li>
-            <li>Prizes are provided by the ensembles listed and are subject to their availability and terms.</li>
-          </ul>
-        </div>
-      </section>
-    </div>
+      </div>
+    </header>
   );
 }
