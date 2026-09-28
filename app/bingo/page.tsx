@@ -1,4 +1,4 @@
-import SiteHeader from "../../components/SiteHeader";
+import { SiteHeader } from "../../components/SiteHeader";
 
 const green = "#2C4031";
 const yellow = "#D9CF43";
