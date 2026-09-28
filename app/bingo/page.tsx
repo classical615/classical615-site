@@ -1,6 +1,34 @@
 import { SiteHeader } from "../../components/SiteHeader";
 
-export default function BingoPage() {
+// ON/OFF SWITCH
+// false = visitors see the "Coming soon" page
+// true  = visitors see the full bingo page with rules and prizes
+const showFullPage = false;
+
+function ComingSoon() {
+  return (
+    <div className="min-h-screen bg-purple-pale font-body text-ink">
+      <SiteHeader />
+
+      <section className="bg-yellow border-b-4 border-ink">
+        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
+          <h1 className="font-display text-4xl sm:text-5xl leading-none">Classical 615 Bingo</h1>
+          <p className="mt-4 text-lg sm:text-xl">Go to concerts. Mark your card. Win big.</p>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-3xl px-6 py-12 space-y-8">
+        <div className="rounded-2xl bg-paper p-12 shadow-sm text-center">
+          <h2 className="font-display text-3xl">Coming soon!</h2>
+        </div>
+
+        <p className="pt-4 text-center text-lg">Questions? Email <a href="mailto:bingo@classical615.com" className="font-semibold text-orange underline">bingo@classical615.com</a></p>
+      </section>
+    </div>
+  );
+}
+
+function FullBingoPage() {
   return (
     <div className="min-h-screen bg-purple-pale font-body text-ink">
       <SiteHeader />
@@ -66,4 +94,8 @@ export default function BingoPage() {
       </section>
     </div>
   );
+}
+
+export default function BingoPage() {
+  return showFullPage ? <FullBingoPage /> : <ComingSoon />;
 }
