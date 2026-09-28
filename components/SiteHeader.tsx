@@ -21,7 +21,7 @@ export function SiteHeader() {
                 <summary className="list-none cursor-pointer hover:text-yellow transition-colors select-none">Initiatives &#9662;</summary>
                 <div className="absolute left-0 top-full z-50 mt-3 w-64 overflow-hidden rounded-xl border-2 border-ink bg-paper shadow-lg">
                   <a href="/jam" className="block px-5 py-3 text-ink hover:bg-yellow transition-colors">Classical 615 Jam</a>
-                  <a href="/bingo" className="block px-5 py-3 text-ink hover:bg-yellow transition-colors">Bingo</a>
+                  <a href="/bingo" className="block px-5 py-3 text-ink hover:bg-yellow transition-colors">Bingo Contest</a>
                   <a href="https://classicallycurious.substack.com/" target="_blank" rel="noreferrer" className="block px-5 py-3 text-ink hover:bg-yellow transition-colors">Classically Curious</a>
                 </div>
               </details>
