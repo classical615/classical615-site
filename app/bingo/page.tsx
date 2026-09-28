@@ -61,6 +61,8 @@ export default function BingoPage() {
             <li>Prizes are provided by the ensembles listed and are subject to their availability and terms.</li>
           </ul>
         </div>
+
+        <p className="pt-4 text-center text-lg">Questions? Email <a href="mailto:bingo@classical615.com" className="font-semibold text-orange underline">bingo@classical615.com</a></p>
       </section>
     </div>
   );
