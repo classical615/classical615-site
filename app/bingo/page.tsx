@@ -25,7 +25,7 @@ export default function BingoPage() {
             <li>
               Sign up for the Classical 615 mailing list. It&apos;s free, and it&apos;s how we&apos;ll keep you posted on bingo news and prizes.
               <div className="mt-3">
-                <a href="https://classicallycurious.substack.com/subscribe" target="_blank" rel="noreferrer" className="inline-block rounded-full bg-yellow px-6 py-3 font-semibold text-ink hover:bg-orange transition-colors">Sign up for the mailing list</a>
+                <a href="https://mailchi.mp/268ddf540007/classical-615-newsletter" target="_blank" rel="noreferrer" className="inline-block rounded-full bg-yellow px-6 py-3 font-semibold text-ink hover:bg-orange transition-colors">Sign up for the mailing list</a>
               </div>
             </li>
             <li>Get your bingo card below.</li>
