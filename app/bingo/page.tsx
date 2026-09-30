@@ -20,21 +20,27 @@ export default function BingoPage() {
         </div>
 
         <div className="rounded-2xl bg-paper p-8 shadow-sm">
+          <h2 className="font-display text-2xl mb-4">How to play</h2>
+          <ol className="list-decimal pl-6 space-y-3 leading-relaxed">
+            <li>
+              Sign up for the Classical 615 mailing list. It&apos;s free, and it&apos;s how we&apos;ll keep you posted on bingo news and prizes.
+              <div className="mt-3">
+                <a href="https://classicallycurious.substack.com/subscribe" target="_blank" rel="noreferrer" className="inline-block rounded-full bg-yellow px-6 py-3 font-semibold text-ink hover:bg-orange transition-colors">Sign up for the mailing list</a>
+              </div>
+            </li>
+            <li>Get your bingo card below.</li>
+            <li>Attend concerts on the card between now and June 15, 2027.</li>
+            <li>At each concert, take a selfie with something that shows you&apos;re there — the printed program, a poster in the lobby, or your ticket. It doesn&apos;t need to be fancy.</li>
+            <li>Once you&apos;ve completed a row, column, or diagonal, email your selfies from every concert in that line to <a href="mailto:bingo@classical615.com" className="font-semibold text-orange underline">bingo@classical615.com</a> in one message. Include your name and tell us which squares you&apos;re claiming.</li>
+          </ol>
+        </div>
+
+        <div className="rounded-2xl bg-paper p-8 shadow-sm">
           <h2 className="font-display text-2xl mb-4">Your bingo card</h2>
           <Image src="/bingo-card.png" alt="Classical 615 Bingo card for the 2026-2027 season" width={1430} height={2000} className="w-full h-auto rounded-xl border-2 border-ink" />
           <div className="mt-6 text-center">
             <a href="/bingo-card.png" download className="inline-block rounded-full bg-yellow px-6 py-3 font-semibold text-ink hover:bg-orange transition-colors">Download the card</a>
           </div>
-        </div>
-
-        <div className="rounded-2xl bg-paper p-8 shadow-sm">
-          <h2 className="font-display text-2xl mb-4">How to play</h2>
-          <ol className="list-decimal pl-6 space-y-3 leading-relaxed">
-            <li>Get your bingo card at classical615.com/bingo.</li>
-            <li>Attend concerts on the card between now and June 15, 2027.</li>
-            <li>At each concert, take a selfie with something that shows you&apos;re there — the printed program, a poster in the lobby, or your ticket. It doesn&apos;t need to be fancy.</li>
-            <li>Once you&apos;ve completed a row, column, or diagonal, email your selfies from every concert in that line to <a href="mailto:bingo@classical615.com" className="font-semibold text-orange underline">bingo@classical615.com</a> in one message. Include your name and tell us which squares you&apos;re claiming.</li>
-          </ol>
         </div>
 
         <div className="rounded-2xl bg-paper p-8 shadow-sm">
@@ -55,12 +61,14 @@ export default function BingoPage() {
             <li>Belmont Orchestras T-shirt</li>
             <li>Middle Tennessee Sinfonietta merch</li>
           </ul>
+          <p className="mt-4 font-semibold">...and more to be announced!</p>
           <p className="mt-4 text-sm font-semibold">All prizes valid for the 2027/2028 season.</p>
         </div>
 
         <div className="rounded-2xl bg-paper p-8 shadow-sm">
           <h2 className="font-display text-2xl mb-4">The fine print</h2>
           <ul className="list-disc pl-6 space-y-2 text-sm leading-relaxed">
+            <li>Signing up for the mailing list is free. Entries must come from an email address that is subscribed to the list.</li>
             <li>Every verified bingo earns one entry into the drawing. The more bingos you complete, the more entries you have.</li>
             <li>One concert counts for one square, even if it could fit more than one.</li>
             <li>We reserve the right to confirm the winner&apos;s attendance with the participating ensembles.</li>
