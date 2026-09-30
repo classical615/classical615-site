@@ -1,11 +1,7 @@
+import Image from "next/image";
 import { SiteHeader } from "../../components/SiteHeader";
 
-// ON/OFF SWITCH
-// false = visitors see the "Coming soon" page
-// true  = visitors see the full bingo page with rules and prizes
-const showFullPage = false;
-
-function ComingSoon() {
+export default function BingoPage() {
   return (
     <div className="min-h-screen bg-purple-pale font-body text-ink">
       <SiteHeader />
@@ -13,42 +9,22 @@ function ComingSoon() {
       <section className="bg-yellow border-b-4 border-ink">
         <div className="mx-auto max-w-6xl px-6 py-16 text-center">
           <h1 className="font-display text-4xl sm:text-5xl leading-none">Classical 615 Bingo</h1>
-          <p className="mt-4 text-lg sm:text-xl">Go to concerts. Mark your card. Win big.</p>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-3xl px-6 py-12 space-y-8">
-        <div className="rounded-2xl bg-paper p-12 shadow-sm text-center">
-          <h2 className="font-display text-3xl">Coming soon!</h2>
-        </div>
-
-        <p className="pt-4 text-center text-lg">Questions? Email <a href="mailto:bingo@classical615.com" className="font-semibold text-orange underline">bingo@classical615.com</a></p>
-      </section>
-    </div>
-  );
-}
-
-function FullBingoPage() {
-  return (
-    <div className="min-h-screen bg-purple-pale font-body text-ink">
-      <SiteHeader />
-
-      <section className="bg-yellow border-b-4 border-ink">
-        <div className="mx-auto max-w-6xl px-6 py-16 text-center">
-          <h1 className="font-display text-4xl sm:text-5xl leading-none">Classical 615 Bingo</h1>
-          <p className="mt-4 text-lg sm:text-xl">Go to concerts. Mark your card. Win a prize package valued at over $1,000.</p>
+          <p className="mt-4 text-lg sm:text-xl">Go to concerts. Get a bingo. Win big.</p>
         </div>
       </section>
 
       <section className="mx-auto max-w-3xl px-6 py-12 space-y-8">
         <div className="rounded-2xl bg-paper p-8 shadow-sm">
           <h2 className="font-display text-2xl mb-4">What it is</h2>
-          <p className="leading-relaxed">Classical 615 Bingo is a season-long game from Classical 615 with a big, huge, exciting grand prize for one lucky winner. Your bingo card is filled with Nashville classical concerts. Go to a concert, mark off the square. Complete a row, column, or diagonal, and you are entered to win.</p>
+          <p className="leading-relaxed">Classical 615 Bingo is a season-long game from Classical 615 with a big, huge, exciting grand prize for one lucky winner. Your bingo card is filled with Nashville classical concerts. Go to a concert, mark off the square. Complete a row, column, or diagonal, and you&apos;re entered to win.</p>
         </div>
 
         <div className="rounded-2xl bg-paper p-8 shadow-sm">
           <h2 className="font-display text-2xl mb-4">Your bingo card</h2>
-          <div className="rounded-xl border-2 border-dashed border-ink px-6 py-12 text-center font-semibold">Bingo card coming soon!</div>
+          <Image src="/bingo-card.png" alt="Classical 615 Bingo card for the 2026-2027 season" width={1430} height={2000} className="w-full h-auto rounded-xl border-2 border-ink" />
+          <div className="mt-6 text-center">
+            <a href="/bingo-card.png" download className="inline-block rounded-full bg-yellow px-6 py-3 font-semibold text-ink hover:bg-orange transition-colors">Download the card</a>
+          </div>
         </div>
 
         <div className="rounded-2xl bg-paper p-8 shadow-sm">
@@ -56,8 +32,8 @@ function FullBingoPage() {
           <ol className="list-decimal pl-6 space-y-3 leading-relaxed">
             <li>Get your bingo card at classical615.com/bingo.</li>
             <li>Attend concerts on the card between now and June 15, 2027.</li>
-            <li>At each concert, take a selfie with something that shows you are there: the printed program, a poster in the lobby, or your ticket. It does not need to be fancy.</li>
-            <li>Once you have completed a row, column, or diagonal, email your selfies from every concert in that line to <a href="mailto:bingo@classical615.com" className="font-semibold text-orange underline">bingo@classical615.com</a> in one message. Include your name and tell us which squares you are claiming.</li>
+            <li>At each concert, take a selfie with something that shows you&apos;re there — the printed program, a poster in the lobby, or your ticket. It doesn&apos;t need to be fancy.</li>
+            <li>Once you&apos;ve completed a row, column, or diagonal, email your selfies from every concert in that line to <a href="mailto:bingo@classical615.com" className="font-semibold text-orange underline">bingo@classical615.com</a> in one message. Include your name and tell us which squares you&apos;re claiming.</li>
           </ol>
         </div>
 
@@ -68,15 +44,18 @@ function FullBingoPage() {
 
         <div className="rounded-2xl bg-yellow p-8 shadow-sm">
           <h2 className="font-display text-2xl mb-2">Prizes</h2>
-          <p className="mb-4 font-semibold">One winner takes it all. The full package is valued at over $1,000 and includes:</p>
+          <p className="mb-4 font-semibold">One winner takes it all. The prize package includes:</p>
           <ul className="list-disc pl-6 space-y-2 leading-relaxed">
-            <li>7-concert Classical Series package from the Nashville Symphony</li>
-            <li>Nashville Opera 3-show subscription for the 2027-2028 season</li>
-            <li>Two tickets to a Nashville Ballet performance (any show except <em>The Nutcracker</em>)</li>
+            <li>Nashville Opera 3-show subscription</li>
+            <li>Two tickets to a Nashville Ballet performance (any show except <em>Nashville&apos;s Nutcracker</em>)</li>
+            <li>Two tickets to a Chamber Music City concert</li>
+            <li>Two tickets to a Nashville Civic Orchestra concert</li>
+            <li>Two tickets to an Intersection concert</li>
             <li>Two tickets to a Vocal Arts Nashville concert</li>
             <li>Belmont Orchestras T-shirt</li>
             <li>Middle Tennessee Sinfonietta merch</li>
           </ul>
+          <p className="mt-4 text-sm font-semibold">All prizes valid for the 2027/2028 season.</p>
         </div>
 
         <div className="rounded-2xl bg-paper p-8 shadow-sm">
@@ -94,8 +73,4 @@ function FullBingoPage() {
       </section>
     </div>
   );
-}
-
-export default function BingoPage() {
-  return showFullPage ? <FullBingoPage /> : <ComingSoon />;
 }
