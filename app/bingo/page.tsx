@@ -53,6 +53,7 @@ export default function BingoPage() {
           <p className="mb-4 font-semibold">One winner takes it all. The prize package includes:</p>
           <ul className="list-disc pl-6 space-y-2 leading-relaxed">
             <li>Nashville Opera 3-show subscription</li>
+            <li>Nashville Philharmonic Orchestra swag and a chance to conduct the orchestra at a rehearsal</li>
             <li>Two tickets to a Nashville Ballet performance (any show except <em>Nashville&apos;s Nutcracker</em>)</li>
             <li>Two tickets to a Chamber Music City concert</li>
             <li>Two tickets to an Echo Chamber Music Series concert at the Parthenon</li>
